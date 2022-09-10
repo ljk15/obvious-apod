@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Obviousapod"
         tools:targetApi="31">
         <activity
-            android:name=".LandingActivity"
+            android:name=".screens.activities.LandingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

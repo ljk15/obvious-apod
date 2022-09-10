@@ -1,4 +1,4 @@
-package com.obvious.apod
+package com.obvious.apod.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
