@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.HapticFeedbackConstants
 import android.view.View
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.obvious.apod.base.BaseViewBindingFragment
 import com.obvious.apod.databinding.FragmentLandingListBinding
 import com.obvious.apod.listeners.ImageListAdapterListener
@@ -35,10 +36,13 @@ class LandingFragmentList :
     }
 
     private fun setupView() {
-        imgListAdapter = ImageListAdapter(sourceDataList, object : ImageListAdapterListener{
+        imgListAdapter = ImageListAdapter(sourceDataList, object : ImageListAdapterListener {
             override fun onClick(view: View, position: Int) {
                 view.isHapticFeedbackEnabled = true
                 view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+                findNavController().navigate(
+                    LandingFragmentListDirections.actionListingToDetails(position)
+                )
             }
         })
         binding.rvItems.addItemDecoration(RecyclerViewItemSpacingDecoration(1, 1, 1, 1))

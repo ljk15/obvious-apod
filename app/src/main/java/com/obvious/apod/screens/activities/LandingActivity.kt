@@ -10,7 +10,7 @@ class LandingActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val connectionStateMonitor = ConnectionStateMonitor(this).observe(this) {
+        ConnectionStateMonitor(this).observe(this) {
                 if (it) {
                     //todo connected
                 } else {

@@ -10,10 +10,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter()
-        maven {
-            url = 'https://libs.dev.cred.club/'
-        }
     }
 }
 rootProject.name = "apod"
