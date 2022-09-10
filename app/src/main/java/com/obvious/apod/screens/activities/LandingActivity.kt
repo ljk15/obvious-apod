@@ -1,18 +1,22 @@
 package com.obvious.apod.screens.activities
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
 import com.obvious.apod.base.BaseViewBindingActivity
 import com.obvious.apod.databinding.ActivityLandingBinding
-import com.obvious.apod.screens.adapters.ImageListAdapter
-import com.obvious.apod.screens.viewmodels.LandingViewModel
+import com.obvious.apod.utils.ConnectionStateMonitor
 
 class LandingActivity :
     BaseViewBindingActivity<ActivityLandingBinding>(ActivityLandingBinding::inflate) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val connectionStateMonitor = ConnectionStateMonitor(this).observe(this) {
+                if (it) {
+                    //todo connected
+                } else {
+                    //todo disconnected
+                }
+        }
     }
 
 }
