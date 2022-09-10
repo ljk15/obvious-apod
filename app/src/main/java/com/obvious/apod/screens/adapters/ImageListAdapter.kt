@@ -1,16 +1,20 @@
 package com.obvious.apod.screens.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.obvious.apod.R
 import com.obvious.apod.databinding.HolderImageBinding
 import com.obvious.apod.listeners.ImageListAdapterListener
 import com.obvious.apod.models.ImageDataModel
 
 class ImageListAdapter(
     private val itemList: List<ImageDataModel>,
-    private val listener: ImageListAdapterListener
+    private val listener: ImageListAdapterListener,
 ) : RecyclerView.Adapter<ImageListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,7 +24,13 @@ class ImageListAdapter(
         return ViewHolder(binding)
     }
 
+    override fun onViewDetachedFromWindow(holder: ViewHolder) {
+        super.onViewDetachedFromWindow(holder)
+        holder.itemView.clearAnimation()
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        setAnimation(holder.itemView, position)
         Glide.with(holder.binding.ivImg.context)
             .load(itemList[position].url)
             .centerCrop()
@@ -32,6 +42,15 @@ class ImageListAdapter(
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+
+    private fun setAnimation(viewToAnimate: View, position: Int) {
+        val animation: Animation = if (position % 2 == 0) {
+            AnimationUtils.loadAnimation(viewToAnimate.context, R.anim.right_from_left)
+        } else {
+            AnimationUtils.loadAnimation(viewToAnimate.context, R.anim.left_from_right)
+        }
+        viewToAnimate.startAnimation(animation)
     }
 
     inner class ViewHolder(val binding: HolderImageBinding) :

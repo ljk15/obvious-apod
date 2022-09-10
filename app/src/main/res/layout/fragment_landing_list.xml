@@ -9,12 +9,14 @@
         android:id="@+id/rvItems"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="1dp"
+        android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:spanCount="2"
+        app:spanCount="@integer/grid_span_count"
         tools:itemCount="5"
         tools:listitem="@layout/holder_image" />
 
