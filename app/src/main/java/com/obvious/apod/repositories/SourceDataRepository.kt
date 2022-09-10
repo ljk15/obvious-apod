@@ -1,7 +1,6 @@
 package com.obvious.apod.repositories
 
 import android.app.Application
-import android.util.Log
 import com.obvious.apod.R
 import com.obvious.apod.models.ImageDataModel
 import com.obvious.apod.models.ResponseListener
@@ -19,7 +18,11 @@ object SourceDataRepository {
         listener.toggleLoading(true)
         CoroutineScope(Dispatchers.Default).launch {
             try {
-                JsonHelper.readRawResJson(application.applicationContext, R.raw.data)
+                val dataList = JsonHelper.readRawResJson(application.applicationContext, R.raw.data)
+                if (dataList.isNullOrEmpty())
+                    listener.onError("No data to display")
+                else
+                    listener.onSuccess(dataList)
             } catch (e: Exception) {
                 if (e.message != null) {
                     listener.onError(e.message.toString())

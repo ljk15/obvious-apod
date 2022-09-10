@@ -18,7 +18,7 @@ class LandingViewModel(application: Application) : AndroidViewModel(application)
                 //todo loader
             }
 
-            override fun onResponse(sourceData: List<ImageDataModel>) {
+            override fun onSuccess(sourceData: List<ImageDataModel>) {
                 sourceLiveData.postValue(sourceData.sortedByDescending { it.date })
             }
 
