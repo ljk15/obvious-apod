@@ -1,4 +1,4 @@
-package com.obvious.apod.models
+package com.obvious.apod.listeners
 
 interface ResponseListener<T> {
     fun toggleLoading(show: Boolean)

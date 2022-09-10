@@ -3,7 +3,7 @@ package com.obvious.apod.repositories
 import android.app.Application
 import com.obvious.apod.R
 import com.obvious.apod.models.ImageDataModel
-import com.obvious.apod.models.ResponseListener
+import com.obvious.apod.listeners.ResponseListener
 import com.obvious.apod.utils.JsonHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

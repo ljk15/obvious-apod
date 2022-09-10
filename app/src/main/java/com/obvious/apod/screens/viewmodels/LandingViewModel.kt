@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.obvious.apod.models.ImageDataModel
-import com.obvious.apod.models.ResponseListener
+import com.obvious.apod.listeners.ResponseListener
 import com.obvious.apod.repositories.SourceDataRepository
 
 class LandingViewModel(application: Application) : AndroidViewModel(application) {
@@ -13,7 +13,7 @@ class LandingViewModel(application: Application) : AndroidViewModel(application)
 
     fun fetchData() {
         SourceDataRepository.readSourceData(getApplication(), object :
-        ResponseListener<List<ImageDataModel>>{
+            ResponseListener<List<ImageDataModel>> {
             override fun toggleLoading(show: Boolean) {
                 //todo loader
             }
