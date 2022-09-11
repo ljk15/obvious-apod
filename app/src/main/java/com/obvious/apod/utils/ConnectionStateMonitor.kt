@@ -1,6 +1,8 @@
 package com.obvious.apod.utils
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -20,6 +22,7 @@ class ConnectionStateMonitor(mContext: Context) : LiveData<Boolean>() {
 
     override fun onActive() {
         super.onActive()
+        updateConnection()
         connectivityManager!!.registerDefaultNetworkCallback(networkCallback!!)
         val networkRequest = NetworkRequest.Builder()
             .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
@@ -42,6 +45,21 @@ class ConnectionStateMonitor(mContext: Context) : LiveData<Boolean>() {
         override fun onLost(network: Network) {
             mConnectionStateMonitor.postValue(false)
         }
+
+        override fun onUnavailable() {
+            super.onUnavailable()
+            mConnectionStateMonitor.postValue(false)
+        }
     }
 
+    private fun updateConnection() {
+        if (connectivityManager != null) {
+            val activeNetwork = connectivityManager!!.activeNetwork
+            if (activeNetwork != null) {
+                postValue(true)
+            } else {
+                postValue(false)
+            }
+        }
+    }
 }
