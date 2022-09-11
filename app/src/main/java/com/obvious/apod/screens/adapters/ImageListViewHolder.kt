@@ -23,7 +23,7 @@ class ImageListViewHolder(val binding: HolderImageBinding) :
             .into(binding.ivImg)
 
         binding.ivImg.contentDescription =
-            item.url?.getFileName() ?: item.mediaType
+            item.hdUrl?.getFileName() ?: item.mediaType
 
     }
 

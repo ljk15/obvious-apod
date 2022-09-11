@@ -20,7 +20,7 @@ class ImageDetailViewHolder(private val binding: HolderDetailsBinding) :
             .dontAnimate()
             .into(binding.ivImg)
 
-        binding.ivImg.contentDescription = item.url?.getFileName() ?: item.mediaType
+        binding.ivImg.contentDescription = item.hdUrl?.getFileName() ?: item.mediaType
         binding.tvDate.text = item.date?.convertDate() ?: ""
         binding.tvTitle.text = item.title
         binding.tvCopyright.text = item.copyright
