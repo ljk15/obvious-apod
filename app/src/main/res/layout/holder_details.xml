@@ -8,25 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivImg"
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/TextStyleTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/image"
-            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            style="@style/TextStyleTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivImg" />
 
         <TextView
             android:id="@+id/tvDate"
@@ -42,9 +31,10 @@
             android:layout_width="1dp"
             android:layout_height="0dp"
             android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="@+id/tvCopyright"
             app:layout_constraintStart_toEndOf="@+id/tvDate"
             app:layout_constraintTop_toTopOf="@+id/tvCopyright"
-            app:layout_constraintBottom_toBottomOf="@+id/tvCopyright" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tvCopyright"
@@ -55,20 +45,33 @@
             app:layout_constraintStart_toEndOf="@+id/div"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-        <TextView
-            android:id="@+id/tvContent"
+        <ImageView
+            android:id="@+id/ivImg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextStyleContent"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCopyright" />
+            app:layout_constraintTop_toBottomOf="@+id/div" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            style="@style/TextStyleContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivImg" />
 
         <TextView
             android:id="@+id/tvType"
+            style="@style/TextStyleCommons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextStyleCommons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvContent" />
