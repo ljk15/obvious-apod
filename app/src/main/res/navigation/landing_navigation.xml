@@ -23,11 +23,6 @@
         android:id="@+id/landingFragmentDetails"
         android:name="com.obvious.apod.screens.fragments.LandingFragmentDetails"
         android:label="LandingFragmentDetails"
-        tools:layout="@layout/fragment_landing_details">
-        <argument
-            android:name="index"
-            android:defaultValue="0"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_landing_details" />
 
 </navigation>

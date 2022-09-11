@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -26,7 +26,6 @@ class LandingFragmentDetails :
     private val landingViewModel: LandingViewModel by activityViewModels()
     private val sourceDataList = ArrayList<ImageDataModel>()
     private lateinit var imgDetailsAdapter: ImageDetailsAdapter
-    private val args: LandingFragmentDetailsArgs by navArgs()
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +37,7 @@ class LandingFragmentDetails :
             sourceDataList.clear()
             sourceDataList.addAll(it)
             imgDetailsAdapter.notifyDataSetChanged()
-            binding.vpDetails.setCurrentItem(args.index, false)
+            binding.vpDetails.setCurrentItem(landingViewModel.currentIndex, false)
         }
     }
 
@@ -58,15 +57,14 @@ class LandingFragmentDetails :
         binding.vpDetails.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if (!sourceDataList[position].hdUrl.isNullOrEmpty())
-                    PaletteHelper.getColorFromImage(sourceDataList[position].hdUrl!!, binding.vpDetails) {
-                        try {
+                if (position != NO_POSITION) {
+                    landingViewModel.currentIndex = position
+                    if (!sourceDataList[position].hdUrl.isNullOrEmpty())
+                        PaletteHelper.getColorFromImage(sourceDataList[position].hdUrl!!,
+                            binding.vpDetails) {
                             binding.vpDetails.colorTransition(it)
-                        } catch (e: Exception) {
-                            e.printStackTrace()
                         }
-
-                    }
+                }
             }
         })
     }
