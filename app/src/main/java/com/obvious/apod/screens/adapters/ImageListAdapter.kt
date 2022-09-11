@@ -1,5 +1,6 @@
 package com.obvious.apod.screens.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.obvious.apod.R
 import com.obvious.apod.databinding.HolderImageBinding
 import com.obvious.apod.listeners.ImageListAdapterListener
 import com.obvious.apod.models.ImageDataModel
+import com.obvious.apod.utils.getFileName
 
 class ImageListAdapter(
     private val itemList: List<ImageDataModel>,
@@ -31,6 +33,8 @@ class ImageListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         setAnimation(holder.itemView, position)
+        holder.binding.ivImg.contentDescription =
+            itemList[position].url?.getFileName() ?: itemList[position].mediaType
         Glide.with(holder.binding.ivImg.context)
             .load(itemList[position].url)
             .centerCrop()
