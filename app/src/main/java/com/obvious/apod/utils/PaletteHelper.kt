@@ -1,6 +1,5 @@
 package com.obvious.apod.utils
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -16,9 +15,7 @@ object PaletteHelper {
 
     private val colorMap = ConcurrentHashMap<String, Int>()
 
-
-
-    fun getColor(url: String, view: View, callback: (Int) -> Unit) {
+    fun getColorFromImage(url: String, view: View, callback: (Int) -> Unit) {
         Glide.with(view).clear(view)
         val colorKey = url.getFileName()
         if (colorMap.containsKey(colorKey))
@@ -26,10 +23,9 @@ object PaletteHelper {
         else {
             Glide.with(view).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    createPaletteAsync(resource) {
-                        colorMap[colorKey] = it
-                        callback(it)
-                    }
+                    val color = getColorFromSwatch(generatePalette(resource))
+                    colorMap[colorKey] = color
+                    callback(color)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {
@@ -39,22 +35,20 @@ object PaletteHelper {
         }
     }
 
-    fun createPaletteAsync(bitmap: Bitmap, onResult: (Int) -> Unit) {
-        Palette.from(bitmap).generate { palette ->
-            var color = Color.BLACK
-            if (palette != null) {
-                color = when {
-                    palette.darkMutedSwatch != null -> palette.darkMutedSwatch!!.rgb
-                    palette.lightMutedSwatch != null -> palette.lightMutedSwatch!!.rgb
-                    palette.darkVibrantSwatch != null -> palette.darkVibrantSwatch!!.rgb
-                    palette.lightVibrantSwatch != null -> palette.lightVibrantSwatch!!.rgb
-                    else -> Color.BLACK
-                }
-            }
-            onResult(darkenColor(color))
+    private fun getColorFromSwatch(palette: Palette): Int {
+        val color: Int = when {
+            palette.darkMutedSwatch != null -> palette.darkMutedSwatch!!.rgb
+            palette.lightMutedSwatch != null -> palette.lightMutedSwatch!!.rgb
+            palette.darkVibrantSwatch != null -> palette.darkVibrantSwatch!!.rgb
+            palette.lightVibrantSwatch != null -> palette.lightVibrantSwatch!!.rgb
+            else -> Color.BLACK
         }
+        return darkenColor(color)
     }
 
+    fun generatePalette(bitmap: Bitmap): Palette {
+        return Palette.from(bitmap).generate()
+    }
 
     @ColorInt
     fun darkenColor(@ColorInt color: Int): Int {

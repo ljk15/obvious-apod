@@ -59,7 +59,7 @@ class LandingFragmentDetails :
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (!sourceDataList[position].hdUrl.isNullOrEmpty())
-                    PaletteHelper.getColor(sourceDataList[position].hdUrl!!, binding.vpDetails) {
+                    PaletteHelper.getColorFromImage(sourceDataList[position].hdUrl!!, binding.vpDetails) {
                         try {
                             binding.vpDetails.colorTransition(it)
                         } catch (e: Exception) {
