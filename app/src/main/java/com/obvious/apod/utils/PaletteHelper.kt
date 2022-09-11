@@ -21,6 +21,10 @@ object PaletteHelper {
             callback(colorMap[colorKey]!!)
         else {
             Glide.with(view).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
+                override fun onLoadFailed(errorDrawable: Drawable?) {
+                    callback(Color.BLACK)
+                }
+
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     val color = getColorFromSwatch(generatePalette(resource))
                     colorMap[colorKey] = color

@@ -19,6 +19,7 @@ class ImageListViewHolder(val binding: HolderImageBinding) :
             .load(item.hdUrl)
             .thumbnail(0.25f)
             .placeholder(Injector.provideShimmerPlaceHolder())
+            .error(R.drawable.ic_twotone_image_failed_to_load_24)
             .centerCrop()
             .dontAnimate()
             .into(binding.ivImg)

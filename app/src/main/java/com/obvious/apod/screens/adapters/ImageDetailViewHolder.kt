@@ -17,6 +17,7 @@ class ImageDetailViewHolder(private val binding: HolderDetailsBinding) :
         Glide.with(binding.ivImg.context)
             .load(item.hdUrl)
             .placeholder(Injector.provideShimmerPlaceHolder())
+            .error(R.drawable.ic_twotone_image_failed_to_load_24)
             .centerInside()
             .dontAnimate()
             .into(binding.ivImg)

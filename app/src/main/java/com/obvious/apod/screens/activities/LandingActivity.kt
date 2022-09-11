@@ -13,7 +13,6 @@ import com.obvious.apod.utils.ConnectionStateMonitor
 class LandingActivity :
     BaseViewBindingActivity<ActivityLandingBinding>(ActivityLandingBinding::inflate) {
 
-    private var isOnline = true
     private val handler = Handler(Looper.getMainLooper())
     private lateinit var visibilityRunnable: Runnable
 
@@ -30,15 +29,11 @@ class LandingActivity :
 
         ConnectionStateMonitor(this).observe(this) {
             if (it) {
-                if (!isOnline) {
-                    binding.tvNoNet.text = getString(R.string.network_connected)
-                    binding.tvNoNet.setBackgroundColor(getColor(R.color.green))
-                    binding.tvNoNet.visibility = VISIBLE
-                    handler.postDelayed(visibilityRunnable, 3000)
-                }
-                isOnline = true
+                binding.tvNoNet.text = getString(R.string.network_connected)
+                binding.tvNoNet.setBackgroundColor(getColor(R.color.green))
+                binding.tvNoNet.visibility = VISIBLE
+                handler.postDelayed(visibilityRunnable, 3000)
             } else {
-                isOnline = false
                 handler.removeCallbacks(visibilityRunnable)
                 binding.tvNoNet.text = getString(R.string.working_offline)
                 binding.tvNoNet.setBackgroundColor(getColor(R.color.red))
