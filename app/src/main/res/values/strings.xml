@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">apod</string>
+    <string name="image">image</string>
+    <string name="media_type">Media Type:\u0020</string>
+    <string name="service_version">Service Version:\u0020</string>
+    <string name="working_offline">\u24d8 Working Offline</string>
+    <string name="network_connected">\u2713 Network Connected</string>
 </resources>
