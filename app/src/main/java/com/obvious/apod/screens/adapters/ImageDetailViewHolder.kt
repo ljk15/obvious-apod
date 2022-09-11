@@ -17,6 +17,7 @@ class ImageDetailViewHolder(private val binding: HolderDetailsBinding) :
         Glide.with(binding.ivImg.context)
             .load(item.hdUrl)
             .placeholder(Injector.provideShimmerPlaceHolder())
+            .dontAnimate()
             .into(binding.ivImg)
 
         binding.ivImg.contentDescription = item.url?.getFileName() ?: item.mediaType

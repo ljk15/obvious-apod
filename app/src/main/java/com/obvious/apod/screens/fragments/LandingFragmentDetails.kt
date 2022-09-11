@@ -37,8 +37,8 @@ class LandingFragmentDetails :
         landingViewModel.sourceLiveData.observe(viewLifecycleOwner) {
             sourceDataList.clear()
             sourceDataList.addAll(it)
-            binding.vpDetails.setCurrentItem(args.index, false)
             imgDetailsAdapter.notifyDataSetChanged()
+            binding.vpDetails.setCurrentItem(args.index, false)
         }
     }
 
@@ -55,13 +55,18 @@ class LandingFragmentDetails :
     }
 
     private fun setupViewColors() {
-        binding.vpDetails.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+        binding.vpDetails.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (!sourceDataList[position].hdUrl.isNullOrEmpty())
-                PaletteHelper.getColor(sourceDataList[position].hdUrl!!, binding.vpDetails.context) {
-                    binding.vpDetails.colorTransition(it)
-                }
+                    PaletteHelper.getColor(sourceDataList[position].hdUrl!!, binding.vpDetails) {
+                        try {
+                            binding.vpDetails.colorTransition(it)
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+
+                    }
             }
         })
     }

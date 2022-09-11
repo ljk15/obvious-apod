@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.view.View
 import androidx.annotation.ColorInt
 import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
@@ -15,12 +16,15 @@ object PaletteHelper {
 
     private val colorMap = ConcurrentHashMap<String, Int>()
 
-    fun getColor(url: String, mContext: Context, callback: (Int) -> Unit) {
+
+
+    fun getColor(url: String, view: View, callback: (Int) -> Unit) {
+        Glide.with(view).clear(view)
         val colorKey = url.getFileName()
         if (colorMap.containsKey(colorKey))
             callback(colorMap[colorKey]!!)
         else {
-            Glide.with(mContext).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
+            Glide.with(view).asBitmap().load(url).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     createPaletteAsync(resource) {
                         colorMap[colorKey] = it

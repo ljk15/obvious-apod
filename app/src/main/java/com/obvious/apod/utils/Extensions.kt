@@ -34,7 +34,7 @@ fun String.convertDate(): String {
 }
 
 fun View.colorTransition(@ColorInt endColor: Int, duration: Long = 250L){
-    var colorFrom = Color.TRANSPARENT
+    var colorFrom = Color.BLACK
     if (background is ColorDrawable)
         colorFrom = (background as ColorDrawable).color
 
