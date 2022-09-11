@@ -82,4 +82,7 @@ dependencies {
     //palette
     implementation 'androidx.palette:palette-ktx:1.0.0'
 
+    //dots indicator
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.2.3"
+
 }

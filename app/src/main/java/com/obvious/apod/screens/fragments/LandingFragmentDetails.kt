@@ -51,6 +51,8 @@ class LandingFragmentDetails :
             it.addTransformer(MarginPageTransformer(dp.px))
         })
         binding.vpDetails.adapter = imgDetailsAdapter
+
+        binding.spIndicator.attachToPager(binding.vpDetails)
     }
 
     private fun setupViewColors() {
