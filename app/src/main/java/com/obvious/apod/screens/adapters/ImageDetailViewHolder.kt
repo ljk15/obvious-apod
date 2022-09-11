@@ -18,20 +18,23 @@ class ImageDetailViewHolder(private val binding: HolderDetailsBinding) :
             .load(item.hdUrl)
             .placeholder(Injector.provideShimmerPlaceHolder())
             .into(binding.ivImg)
-        binding.ivImg.contentDescription =
-            item.url?.getFileName() ?: item.mediaType
+
+        binding.ivImg.contentDescription = item.url?.getFileName() ?: item.mediaType
         binding.tvDate.text = item.date?.convertDate() ?: ""
         binding.tvTitle.text = item.title
         binding.tvCopyright.text = item.copyright
+        binding.tvContent.text = item.explanation
+
         if (item.copyright.isNullOrEmpty())
             binding.div.visibility = View.GONE
         else
             binding.div.visibility = View.VISIBLE
-        binding.tvContent.text = item.explanation
+
         if (!item.mediaType.isNullOrEmpty())
             binding.tvType.text = String.format("%s%s",
                 itemView.context.getString(R.string.media_type),
                 item.mediaType)
+
         if (!item.serviceVersion.isNullOrEmpty())
             binding.tvVersion.text = String.format("%s%s",
                 itemView.context.getString(R.string.service_version),

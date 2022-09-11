@@ -1,7 +1,13 @@
 package com.obvious.apod.utils
 
+import android.animation.ArgbEvaluator
+import android.animation.ValueAnimator
 import android.content.res.Resources.getSystem
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.View
 import android.webkit.URLUtil
+import androidx.annotation.ColorInt
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,4 +31,21 @@ fun String.convertDate(): String {
 
     }
     return this
+}
+
+fun View.colorTransition(@ColorInt endColor: Int, duration: Long = 250L){
+    var colorFrom = Color.TRANSPARENT
+    if (background is ColorDrawable)
+        colorFrom = (background as ColorDrawable).color
+
+    val colorAnimation: ValueAnimator = ValueAnimator.ofObject(ArgbEvaluator(), colorFrom, endColor)
+    colorAnimation.duration = duration
+
+    colorAnimation.addUpdateListener {
+        if (it.animatedValue is Int) {
+            val color=it.animatedValue as Int
+            setBackgroundColor(color)
+        }
+    }
+    colorAnimation.start()
 }

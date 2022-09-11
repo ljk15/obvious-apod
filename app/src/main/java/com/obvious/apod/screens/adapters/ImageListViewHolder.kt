@@ -12,13 +12,16 @@ import com.obvious.apod.utils.getFileName
 
 class ImageListViewHolder(val binding: HolderImageBinding) :
     RecyclerView.ViewHolder(binding.root) {
+
     fun bind(item: ImageDataModel) {
+
         Glide.with(binding.ivImg.context)
             .load(item.hdUrl)
             .thumbnail(0.25f)
             .placeholder(Injector.provideShimmerPlaceHolder())
             .centerCrop()
             .into(binding.ivImg)
+
         binding.ivImg.contentDescription =
             item.url?.getFileName() ?: item.mediaType
 
