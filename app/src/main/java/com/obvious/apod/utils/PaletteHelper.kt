@@ -16,7 +16,6 @@ object PaletteHelper {
     private val colorMap = ConcurrentHashMap<String, Int>()
 
     fun getColorFromImage(url: String, view: View, callback: (Int) -> Unit) {
-        Glide.with(view).clear(view)
         val colorKey = url.getFileName()
         if (colorMap.containsKey(colorKey))
             callback(colorMap[colorKey]!!)

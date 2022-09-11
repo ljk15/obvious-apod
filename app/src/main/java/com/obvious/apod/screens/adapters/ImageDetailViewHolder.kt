@@ -17,10 +17,12 @@ class ImageDetailViewHolder(private val binding: HolderDetailsBinding) :
         Glide.with(binding.ivImg.context)
             .load(item.hdUrl)
             .placeholder(Injector.provideShimmerPlaceHolder())
+            .centerInside()
             .dontAnimate()
             .into(binding.ivImg)
 
         binding.ivImg.contentDescription = item.hdUrl?.getFileName() ?: item.mediaType
+        binding.ivImg.transitionName = item.hdUrl?.getFileName() ?: item.mediaType
         binding.tvDate.text = item.date?.convertDate() ?: ""
         binding.tvTitle.text = item.title
         binding.tvCopyright.text = item.copyright

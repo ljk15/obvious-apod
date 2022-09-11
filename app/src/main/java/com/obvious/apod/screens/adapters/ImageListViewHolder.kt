@@ -20,9 +20,12 @@ class ImageListViewHolder(val binding: HolderImageBinding) :
             .thumbnail(0.25f)
             .placeholder(Injector.provideShimmerPlaceHolder())
             .centerCrop()
+            .dontAnimate()
             .into(binding.ivImg)
 
         binding.ivImg.contentDescription =
+            item.hdUrl?.getFileName() ?: item.mediaType
+        binding.ivImg.transitionName =
             item.hdUrl?.getFileName() ?: item.mediaType
 
     }
