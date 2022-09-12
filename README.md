@@ -1,7 +1,7 @@
 # APoD
 Android application that loads a json file with details form NASA's Astronomy Picture of the Day.
 
-[![NASA Pictures](https://img.shields.io/badge/APoD%20v1.0-apk-brightgreen?style=flat&logo=android)](https://github.com/ljk15/obvious-apod/git-res/app-release.apk)
+[![NASA Pictures](https://img.shields.io/badge/APoD%20v1.0-apk-brightgreen?style=flat&logo=android)](https://github.com/ljk15/obvious-apod/tree/main/git-res/app-release.apk)
 
 Created as part of the hiring process at Obvious
 
