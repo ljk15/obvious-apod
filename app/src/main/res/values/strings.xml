@@ -5,4 +5,5 @@
     <string name="service_version">Service Version:\u0020</string>
     <string name="working_offline">\u24d8 Working Offline</string>
     <string name="network_connected">\u2713 Network Connected</string>
+    <string name="unexpected_error">Unexpected error occurred</string>
 </resources>

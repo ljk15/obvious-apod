@@ -12,12 +12,13 @@ class LandingViewModel(application: Application) : AndroidViewModel(application)
 
     val sourceLiveData = MutableLiveData<List<ImageDataModel>>()
     var currentIndex: Int = 0
+    val errorLiveData = MutableLiveData<String>()
 
     fun fetchData() {
         SourceDataRepository.readSourceData(getApplication(), object :
             ResponseListener<List<ImageDataModel>> {
             override fun toggleLoading(show: Boolean) {
-                //todo loader
+                //if loader to be shown in future
             }
 
             override fun onSuccess(sourceData: List<ImageDataModel>) {
@@ -25,7 +26,7 @@ class LandingViewModel(application: Application) : AndroidViewModel(application)
             }
 
             override fun onError(error: String) {
-                //todo error
+                errorLiveData.postValue(error)
             }
         })
     }

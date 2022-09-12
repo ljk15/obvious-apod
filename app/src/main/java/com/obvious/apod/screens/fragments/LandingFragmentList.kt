@@ -33,6 +33,9 @@ class LandingFragmentList :
             sourceDataList.addAll(it)
             imgListAdapter.notifyDataSetChanged()
         }
+        landingViewModel.errorLiveData.observe(viewLifecycleOwner) {
+            showErrorSnack(binding.root, it)
+        }
         landingViewModel.fetchData()
 
     }
