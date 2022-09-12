@@ -2,8 +2,8 @@ package com.obvious.apod.repositories
 
 import android.app.Application
 import com.obvious.apod.R
-import com.obvious.apod.models.ImageDataModel
 import com.obvious.apod.listeners.ResponseListener
+import com.obvious.apod.models.ImageDataModel
 import com.obvious.apod.utils.JsonHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +25,7 @@ object SourceDataRepository {
                     listener.onSuccess(dataList)
             } catch (e: Exception) {
                 if (e.message != null) {
-                    listener.onError(e.message.toString())
+                    listener.onError("Error: ${e.message.toString()}")
                 }
             }
             listener.toggleLoading(false)
