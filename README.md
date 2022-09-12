@@ -15,9 +15,11 @@ Screen for displaying the full size image along with the metadata like title, de
 Also with the ability to swipe to previous or next images from this screen itself.
 
 # Screenshots
-<table style="width:50%">
+<table style="width:100%">
   <tr>
     <td><img src="git-res/1.jpg"/></td>
     <td><img src="git-res/2.jpg"/></td>
+    <td><img src="git-res/3.jpg"/></td>
+    <td><img src="git-res/4.jpg"/></td>
   </tr>
 </table>
